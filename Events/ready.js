@@ -20,7 +20,7 @@ exports.run = async (client, options, cmdArgs) => {
             } else {
                 await client.user.setPresence({
                     game: {
-                        name: `music on ${options.queue.size ? options.queue.size : 0} ${options.queue.size === 1 || !options.queue.size ? "guild" : "guilds"}. | r$`,
+                        name: `music on ${options.queue.size ? options.queue.size : 0} ${options.queue.size === 1 || !options.queue.size ? "guild" : "guilds"}. | ${options.config.prefix}`,
                         type: "PLAYING"
                     }
                 });
