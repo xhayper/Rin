@@ -66,7 +66,7 @@ class Function {
             if (!queue.get(guild.id) || queue.get(guild.id).size === 0) return;
             let data = queue.get(guild.id);
             let voiceConnection = data[0].voiceConnection;
-            let dispatcher = data[0].voiceConnection.playStream(ytdl(data[0].videoData.video_url, {quality: "highestaudio"}));
+            let dispatcher = data[0].voiceConnection.playStream(ytdl(data[0].videoData.video_url, {filter: "audioonly"}));
 
             dispatcher.setVolume(0.3);
 
