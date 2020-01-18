@@ -1,0 +1,13 @@
+{
+  "2": {
+    "name": "Admin",
+    "permissionLevel": 2,
+    "permission": [
+      "administrator"
+    ]
+  },
+  "4": {
+    "name": "botOwner",
+    "permissionLevel": 4
+  }
+}
