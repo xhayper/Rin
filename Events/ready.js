@@ -3,7 +3,7 @@ exports.run = async (client, options, cmdArgs) => {
 
     if (client.voiceConnections) client.voiceConnections.forEach(vc => { vc.disconnect(); });
 
-    let status = ["music | r$", `${client.users.size - 2} users! | r$`];
+    let status = [`music | ${options.config.prefix}`, `${client.users.size - 2} users! | ${options.config.prefix}`];
 
     let statusChanger = async () => {
         setTimeout(async () => {
@@ -20,7 +20,7 @@ exports.run = async (client, options, cmdArgs) => {
             } else {
                 await client.user.setPresence({
                     game: {
-                        name: `music on ${options.queue.size ? options.queue.size : 0} ${options.queue.size === 1 || !options.queue.size ? "guild" : "guilds"}. | r$`,
+                        name: `music on ${options.queue.size ? options.queue.size : 0} ${options.queue.size === 1 || !options.queue.size ? "guild" : "guilds"}. | ${options.config.prefix}`,
                         type: "PLAYING"
                     }
                 });
