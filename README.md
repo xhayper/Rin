@@ -7,4 +7,5 @@ A fun discord music bot, Made in Node.JS, Using Discord.js
 Details :
 
 Coding Language : Node.js
+
 Discord Framework : discord.js
