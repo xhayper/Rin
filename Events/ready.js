@@ -3,7 +3,7 @@ exports.run = async (client, options, cmdArgs) => {
 
     if (client.voiceConnections) client.voiceConnections.forEach(vc => { vc.disconnect(); });
 
-    let status = ["music | r$", `${client.users.size - 2} users! | r$`];
+    let status = [`music | ${options.config.prefix}`, `${client.users.size - 2} users! | ${options.config.prefix}`];
 
     let statusChanger = async () => {
         setTimeout(async () => {
