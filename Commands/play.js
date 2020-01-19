@@ -50,7 +50,7 @@ exports.run = async (client, msg, args, options) => {
     } else {
         let searchResult = await search(args.join(" "));
         if (!searchResult) return await msg.channel.send(error3);
-        data.videoData = await ytdl.getBasicInfo(searchResult[0].url);
+        data.videoData = await ytdl.getBasicInfo(searchResult.videos[0].url);
     }
 
     if (msg.guild.me.voiceChannel) {

@@ -19,12 +19,12 @@ queue = new Discord.Collection();
 Start Of Register Functions
 */
 
-class Function {
-
-    botOwnerList = config.ownerList;
-    permsConfig = permissionConfig;
-    permsLevelCount = 0;
+let botOwnerList = config.ownerList,
+    permsConfig = permissionConfig,
+    permsLevelCount = 0,
     perms;
+
+class Function {
 
     checkPerms(member) {
         if (!member instanceof Discord.GuildMember) return;
