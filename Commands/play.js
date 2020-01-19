@@ -44,13 +44,13 @@ exports.run = async (client, msg, args, options) => {
     };
 
     if (ytdl.validateURL(args[0])) {
-        data.videoData = await ytdl.getBasicInfo(args[0]);
+        data.videoData = await search({ videoId: ytdl.getVideoID(args[0]) });
     } else if (ytdl.validateID(args[0])) {
-        data.videoData = await ytdl.getBasicInfo(args[0]);
+        data.videoData = await search({ videoId: args[0] });
     } else {
         let searchResult = await search(args.join(" "));
         if (!searchResult) return await msg.channel.send(error3);
-        data.videoData = await ytdl.getBasicInfo(searchResult.videos[0].url);
+        data.videoData = searchResult.videos[0];
     }
 
     if (msg.guild.me.voiceChannel) {
@@ -66,10 +66,10 @@ exports.run = async (client, msg, args, options) => {
         .setColor(16711681)
         .setTimestamp(Date.now())
         .setAuthor(`Added Music To Queue!`, msg.author.avatarURL)
-        .setThumbnail(data.videoData.player_response.videoDetails.thumbnail.thumbnails[0].url)
+        .setThumbnail(data.videoData.image)
         .addField("Music Name", data.videoData.title, true)
         .addField("Author", data.videoData.author.name, true)
-        .addField("Duration", options.functions.fancyTimeFormat(data.videoData.player_response.videoDetails.lengthSeconds), true);
+        .addField("Duration", data.videoData.duration.timestamp, true);
 
 
     if (!options.queue.get(msg.guild.id)) {
