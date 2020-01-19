@@ -11,7 +11,7 @@ let Discord = require("discord.js"),
 Register All Collection
 */
 
-  commandList = new Discord.Collection(),safasfasas
+  commandList = new Discord.Collection(),
   queue = new Discord.Collection();
 
 /*
