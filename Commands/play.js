@@ -53,12 +53,7 @@ exports.run = async (client, msg, args, options) => {
         data.videoData = searchResult.videos[0];
     }
 
-    if (msg.guild.me.voiceChannel) {
-        data.voiceConnection = msg.guild.me.voiceChannel.connection;
-    }
-    else {
-        data.voiceConnection = await msg.member.voiceChannel.join();
-    }
+    data.voiceConnection = await msg.member.voiceChannel.join();
 
     if (!msg.guild.me.deaf) await msg.guild.me.setDeaf(true);
 
