@@ -58,7 +58,7 @@ exports.run = async (client, msg, args, options) => {
     if (!msg.guild.me.deaf) await msg.guild.me.setDeaf(true);
 
     let success1 = new Discord.RichEmbed()
-        .setColor(16711681)
+        .setColor(9472474)
         .setTimestamp(Date.now())
         .setAuthor(`Added Music To Queue!`, msg.author.avatarURL)
         .setThumbnail(data.videoData.image)
