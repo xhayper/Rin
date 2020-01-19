@@ -1,6 +1,6 @@
 let ytdl = require('ytdl-core'),
     Discord = require('discord.js'),
-    ytsr = require('ytsr');
+    search = require('yt-search');
 
 exports.run = async (client, msg, args, options) => {
 
@@ -48,9 +48,9 @@ exports.run = async (client, msg, args, options) => {
     } else if (ytdl.validateID(args[0])) {
         data.videoData = await ytdl.getBasicInfo(args[0]);
     } else {
-        let searchResult = await ytsr(args.join(" "));
+        let searchResult = await search(args.join(" "));
         if (!searchResult) return await msg.channel.send(error3);
-        data.videoData = await ytdl.getBasicInfo(searchResult.items[0].link);
+        data.videoData = await ytdl.getBasicInfo(searchResult[0].url);
     }
 
     if (msg.guild.me.voiceChannel) {
@@ -76,7 +76,7 @@ exports.run = async (client, msg, args, options) => {
         options.queue.set(msg.guild.id, [data]);
         options.functions.playMusic(msg.guild);
     } else {
-        msg.channel.send(success1);
+        await msg.channel.send(success1);
         await options.queue.get(msg.guild.id).push(data);
     }
 };

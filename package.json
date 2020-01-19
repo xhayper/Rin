@@ -4,7 +4,7 @@
   "description": "A fun music bot made by xhayper.",
   "main": "main.js",
   "scripts": {
-    "start": "node ."
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -27,12 +27,10 @@
     "discord.js": "^11.5.1",
     "dotenv": "^8.2.0",
     "erlpack": "github:hammerandchisel/erlpack",
-    "express": "^4.17.1",
     "glob": "^7.1.6",
     "libsodium-wrappers": "^0.7.6",
-    "opusscript": "0.0.7",
+    "node-opus": "^0.3.3",
     "yt-search": "^1.1.2",
-    "ytdl-core": "^1.0.6",
-    "ytsr": "^0.1.10"
+    "ytdl-core": "^1.0.7"
   }
 }
