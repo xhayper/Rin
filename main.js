@@ -4,7 +4,7 @@ let Discord = require("discord.js"),
     client = new Discord.Client({disableEveryone : true}),
     permissionConfig = require("./permissionConfig"),
     config = require("./config.json"),
-    youtubeAudioStream = require("youtube-audio-stream"),
+    youtubeAudioStream = require("@isolution/youtube-audio-stream"),
     fs = require("fs"),
     glob = require("glob"),
 
