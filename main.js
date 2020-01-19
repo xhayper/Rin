@@ -19,12 +19,12 @@ queue = new Discord.Collection();
 Start Of Register Functions
 */
 
-    let botOwnerList = config.ownerList,
-    permsConfig = permissionConfig,
-    permsLevelCount = 0,
-    perms;
-
 class Function {
+
+    botOwnerList = config.ownerList;
+    permsConfig = permissionConfig;
+    permsLevelCount = 0;
+    perms;
 
     checkPerms(member) {
         if (!member instanceof Discord.GuildMember) return;
@@ -180,15 +180,3 @@ Login
 */
 
 client.login(process.env.Bot_Token);
-
-/*
-Config Express
-*/
-
-const express = require('express')
-const app = express()
-const port = process.env.PORT;
-
-app.get('/', (req, res) => res.send('Hello!'))
-
-app.listen(port, () => console.log(`App listening on port ${port}!`))
