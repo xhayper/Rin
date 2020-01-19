@@ -4,7 +4,7 @@ let Discord = require("discord.js"),
     client = new Discord.Client({disableEveryone : true}),
     permissionConfig = require("./permissionConfig"),
     config = require("./config.json"),
-    ytdl = require("ytdl-core"),
+    youtubeAudioStream = require('@isolution/youtube-audio-stream'),
     fs = require("fs"),
     glob = require("glob"),
 
@@ -47,11 +47,10 @@ class Function {
         }
     }
 
-    playMusic(guild) {
+    async playMusic(guild) {
             if (!queue.get(guild.id) || queue.get(guild.id).size === 0) return;
             let data = queue.get(guild.id);
-            let voiceConnection = data[0].voiceConnection;
-            let dispatcher = data[0].voiceConnection.playStream(ytdl(data[0].videoData.url, {filter: "audioonly"}));
+            let dispatcher = data[0].voiceConnection.playStream(await youtubeAudioStream(data[0].videoData.url, { bitrate: data[0].voiceConnection.channel.bitrate}));
 
             dispatcher.setVolume(0.3);
 
@@ -62,7 +61,7 @@ class Function {
                 .setThumbnail(data[0].videoData.image)
                 .addField("Music Name", data[0].videoData.title, true)
                 .addField("Author", data[0].videoData.author.name, true)
-                .addField("Duration", data[0].videoData.duration.timestamp, true)
+                .addField("Duration", data[0].videoData.duration.seconds === 0 ? "LIVE" : data[0].videoData.duration.timestamp, true)
                 .setFooter(`Requested by ${data[0].message.author.tag}!`);
             data[0].channel.send(playEmbed);
 
@@ -73,7 +72,7 @@ class Function {
                 queue.get(targetGuild.id).shift();
                 if (!queue.get(targetGuild.id) || queue.get(targetGuild.id).length === 0) {
                     queue.delete(targetGuild.id);
-                    voiceConnection.disconnect();
+                    data[0].voiceConnection.disconnect();
                 } else {
                     this.playMusic(targetGuild);
                 }
