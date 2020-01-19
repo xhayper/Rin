@@ -44,7 +44,7 @@ exports.run = async (client, msg, args, options) => {
     };
 
     if (ytdl.validateURL(args[0])) {
-        data.videoData = await search({ videoId: ytdl.getVideoID(args[0]) });
+        data.videoData = await search({ videoId: ytdl.getURLVideoID(args[0]) });
     } else if (ytdl.validateID(args[0])) {
         data.videoData = await search({ videoId: args[0] });
     } else {
