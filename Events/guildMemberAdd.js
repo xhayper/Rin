@@ -22,7 +22,7 @@ exports.run = (client, options, cmdArgs) => {
   guildMember.addRole("668306746305019904", "Welcome!");
 
   let welcomeEmbed = new Discord.RichEmbed()
-    .setAuthor(`Welcome! ${guildMember}`, guildMember.user.displayAvatarURL)
+    .setAuthor(`Welcome! ${guildMember.user.tag}`, guildMember.user.displayAvatarURL)
     .setThumbnail(guildMember.user.displayAvatarURL)
     .setDescription(
       `You're the ${ordinal_suffix_of(
