@@ -19,12 +19,12 @@ exports.run = (client, options, cmdArgs) => {
             let cI = cL.commandInstance;
             if (!cI.config || cI.config && cI.config.powerLevel === 0) canUse = true;
             else if (cI.config && cI.config.powerLevel <= options.functions.checkPerms(msg.member) || options.functions.checkPerms(msg.member) === 4) canUse = true;
-            if (cL.commandName.toLowerCase() === commandName.toLowerCase() && canUse) cL.commandInstance.run(this.client, msg, args, options);
+            if (cL.commandName.toLowerCase() === commandName.toLowerCase() && canUse) cL.commandInstance.run(client, msg, args, options);
             else if (cI.config && cI.config.aliases) {
                 cI.config.aliases.forEach(a => {
                     if (a.toLowerCase() === commandName.toLowerCase()) {
                         if (!canUse) return args[0].channel.send(error1);
-                        cL.commandInstance.run(this.client, msg, args, options);
+                        cL.commandInstance.run(client, msg, args, options);
                     }
                 })
 

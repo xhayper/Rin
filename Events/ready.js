@@ -1,4 +1,7 @@
+let moment = require("moment");
+
 exports.run = async (client, options, cmdArgs) => {
+    client.startDate = moment();
     console.log(`[Client] Ready!, Logged in as ${client.user.username}#${client.user.discriminator}`);
 
     if (client.voiceConnections) client.voiceConnections.forEach(vc => { vc.disconnect(); });
