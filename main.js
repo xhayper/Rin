@@ -19,12 +19,12 @@ queue = new Discord.Collection();
 Start Of Register Functions
 */
 
-let botOwnerList = config.ownerList,
-    permsConfig = permissionConfig,
-    permsLevelCount = 0,
-    perms;
-
 class Function {
+
+    botOwnerList = config.ownerList;
+    permsConfig = permissionConfig;
+    permsLevelCount = 0;
+    perms;
 
     checkPerms(member) {
         if (!member instanceof Discord.GuildMember) return;
@@ -47,26 +47,11 @@ class Function {
         }
     }
 
-    fancyTimeFormat(time) {
-        let hrs = ~~(time / 3600),
-        mins = ~~((time % 3600) / 60),
-        secs = ~~time % 60,
-        ret = "";
-
-        if (hrs > 0) {
-            ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
-        }
-
-        ret += "" + mins + ":" + (secs < 10 ? "0" : "");
-        ret += "" + secs;
-        return ret;
-    }
-
     playMusic(guild) {
             if (!queue.get(guild.id) || queue.get(guild.id).size === 0) return;
             let data = queue.get(guild.id);
             let voiceConnection = data[0].voiceConnection;
-            let dispatcher = data[0].voiceConnection.playStream(ytdl(data[0].videoData.video_url, {filter: "audioonly"}));
+            let dispatcher = data[0].voiceConnection.playStream(ytdl(data[0].videoData.url, {filter: "audioonly"}));
 
             dispatcher.setVolume(0.3);
 
@@ -74,10 +59,10 @@ class Function {
                 .setColor(16711681)
                 .setTimestamp(Date.now())
                 .setAuthor(`Now playing`, data[0].message.author.avatarURL)
-                .setThumbnail(data[0].videoData.player_response.videoDetails.thumbnail.thumbnails[0].url)
+                .setThumbnail(data[0].videoData.image)
                 .addField("Music Name", data[0].videoData.title, true)
                 .addField("Author", data[0].videoData.author.name, true)
-                .addField("Duration", this.fancyTimeFormat(data[0].videoData.player_response.videoDetails.lengthSeconds), true)
+                .addField("Duration", data[0].videoData.duration.timestamp, true)
                 .setFooter(`Requested by ${data[0].message.author.tag}!`);
             data[0].channel.send(playEmbed);
 
