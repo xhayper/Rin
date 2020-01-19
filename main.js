@@ -4,7 +4,7 @@ let Discord = require("discord.js"),
     client = new Discord.Client({disableEveryone : true}),
     permissionConfig = require("./permissionConfig"),
     config = require("./config.json"),
-    youtubeAudioStream = require("@isolution/youtube-audio-stream"),
+    youtubeAudioStream = require("youtube-audio-stream"),
     fs = require("fs"),
     glob = require("glob"),
 
@@ -84,8 +84,9 @@ class Function {
                 !queue.get(targetGuild.id) ||
                 queue.get(targetGuild.id).length === 0
             ) {
+                queue.get(targetGuild.id)[0].voiceConnection.disconnect();
                 queue.delete(targetGuild.id);
-                data[0].voiceConnection.disconnect();
+              
             } else {
                 this.playMusic(targetGuild);
             }
@@ -181,7 +182,7 @@ End Of Command Manager
 Login
 */
 
-client.login(process.env.Bot_Token);
+//client.login(process.env.Bot_Token);
 
 /*
 Express Stuff

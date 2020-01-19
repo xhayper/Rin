@@ -68,7 +68,7 @@ exports.run = async (client, msg, args, options) => {
 
 
     if (!options.queue.get(msg.guild.id)) {
-        options.queue.set(msg.guild.id, [data]);
+        await options.queue.set(msg.guild.id, [data]);
         options.functions.playMusic(msg.guild);
     } else {
         await msg.channel.send(success1);
