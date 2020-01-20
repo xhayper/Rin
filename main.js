@@ -81,7 +81,8 @@ class Function {
             let targetGuild = dispatcher.player.voiceConnection.channel.guild;
             if (
                 !queue.get(targetGuild.id) ||
-                queue.get(targetGuild.id).size === 1
+                queue.get(targetGuild.id).size === 1 ||
+                      
             ) {
                 await dispatcher.player.voiceConnection.disconnect();
                 queue.delete(targetGuild.id);
