@@ -82,13 +82,13 @@ class Function {
             queue.get(targetGuild.id).shift();
             if (
                 !queue.get(targetGuild.id) ||
-                queue.get(targetGuild.id).length === 0
+                queue.get(targetGuild.id).size === 0
             ) {
                 queue.get(targetGuild.id)[0].voiceConnection.disconnect();
                 queue.delete(targetGuild.id);
               
             } else {
-                this.playMusic(targetGuild);
+                 this.playMusic(targetGuild);
             }
         });
     }
