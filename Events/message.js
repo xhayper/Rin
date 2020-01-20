@@ -2,7 +2,7 @@ let Discord = require("discord.js");
 
 exports.run = (client, options, cmdArgs) => {
     let msg = cmdArgs[0];
-    if (msg.content.startsWith(options.config.prefix) && !msg.author.bot) {
+    if (msg.content.startsWith(options.config.prefix) && !msg.author.bot && msg.channel.type === "text") {
 
         let error1 = new Discord.RichEmbed()
             .setDescription("You can't use that command!")
