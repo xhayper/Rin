@@ -79,14 +79,14 @@ class Function {
 
         dispatcher.on("finish", async () => {
             let targetGuild = dispatcher.player.voiceConnection.channel.guild;
-            queue.get(targetGuild.id).shift();
             if (
                 !queue.get(targetGuild.id) ||
-                queue.get(targetGuild.id).size === 0
+                queue.get(targetGuild.id).size === 1
             ) {
                 await dispatcher.player.voiceConnection.disconnect();
                 queue.delete(targetGuild.id);
             } else {
+                 queue.get(targetGuild.id).shift();
                  this.playMusic(targetGuild);
             }
         });
