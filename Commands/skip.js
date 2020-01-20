@@ -25,7 +25,7 @@ exports.run = (client, msg, args, options) => {
         .setAuthor(`Success!`, msg.author.displayAvatarURL);
 
     msg.channel.send(success1);
-    options.queue.get(msg.guild.id)[0].dispatcher.end("Skipped");
+    options.queue.get(msg.guild.id)[0].dispatcher.emit("finish");
 };
 
 exports.config = {
