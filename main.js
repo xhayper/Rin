@@ -82,12 +82,12 @@ class Function {
             if (
                 !queue.get(targetGuild.id) ||
                 queue.get(targetGuild.id).size === 1 ||
-                      
+                queue.get(targetGuild.id).size === 0
             ) {
                 await dispatcher.player.voiceConnection.disconnect();
                 queue.delete(targetGuild.id);
             } else {
-                 queue.get(targetGuild.id).shift();
+                 await queue.get(targetGuild.id).shift();
                  this.playMusic(targetGuild);
             }
         });
