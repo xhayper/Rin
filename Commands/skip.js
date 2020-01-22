@@ -1,6 +1,6 @@
 let Discord = require('discord.js');
 
-exports.run = (client, msg, args, options) => {
+exports.run = async (client, msg, args, options) => {
 
     let error1 = new Discord.RichEmbed()
         .setDescription("I am not currently playing any song.")
@@ -24,8 +24,8 @@ exports.run = (client, msg, args, options) => {
         .setTimestamp(Date.now())
         .setAuthor(`Success!`, msg.author.displayAvatarURL);
 
-    msg.channel.send(success1);
-    options.queue.get(msg.guild.id)[0].dispatcher.emit("finish");
+    await msg.channel.send(success1);
+    await options.queue.get(msg.guild.id)[0].dispatcher.emit("finish");
 };
 
 exports.config = {
