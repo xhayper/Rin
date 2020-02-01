@@ -88,7 +88,7 @@ class Function {
 
         data[0].dispatcher = dispatcher;
 
-        dispatcher.on("finish", () => {
+        dispatcher.on("end", () => {
             let targetGuild = dispatcher.player.voiceConnection.channel.guild;
             if (
                 !queue.get(targetGuild.id) ||
