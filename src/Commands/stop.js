@@ -27,7 +27,7 @@ exports.run = (client, msg, args, options) => {
     msg.channel.send(success1);
     let dispatcher = options.queue.get(msg.guild.id)[0].dispatcher;
     options.queue.delete(msg.guild.id);
-    dispatcher.emit("finish");
+    dispatcher.end();
 };
 
 exports.config = {
