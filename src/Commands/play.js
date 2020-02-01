@@ -58,6 +58,8 @@ exports.run = async (client, msg, args, options) => {
                 .setAuthor(`Adding playlist to the queue! Please wait!`, msg.author.avatarURL);
 
             let waitMsg = await msg.channel.send(waiting1);
+          
+          if (!options.queue.get(msg.guild.id)) {
             for (const i of playlist.items) {
                 let newData = {
                     videoData: await search({videoId: ytdl.getURLVideoID(i.url_simple)}),
@@ -70,11 +72,12 @@ exports.run = async (client, msg, args, options) => {
 
                 if (!options.queue.get(msg.guild.id)) {
                     await options.queue.set(msg.guild.id, [newData]);
-                    options.functions.playMusic(msg.guild);
                 } else {
                     await options.queue.get(msg.guild.id).push(newData);
                 }
             }
+            options.functions.playMusic(msg.guild);
+          }
 
             let success2 = new Discord.RichEmbed()
                 .setColor(9472474)
