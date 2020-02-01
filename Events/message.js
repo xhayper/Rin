@@ -1,4 +1,4 @@
-let Discord = require("discord.js");
+ let Discord = require("discord.js");
 
 exports.run = (client, options, cmdArgs) => {
     let msg = cmdArgs[0];
@@ -18,7 +18,7 @@ exports.run = (client, options, cmdArgs) => {
             let cL = options.commandList.get(commandName);
             let cI = cL.commandInstance;
             if (!cI.config || cI.config && cI.config.powerLevel === 0) canUse = true;
-            else if (cI.config && cI.config.powerLevel <= options.functions.checkPerms(msg.member) || options.functions.checkPerms(msg.member) === 4) canUse = true;
+            else if (cI.config && cI.config.powerLevel <= options.functions.checkPerms(msg.member).permissionLevel || options.functions.checkPerms(msg.member).permissionLevel === 4) canUse = true;
             if (cL.commandName.toLowerCase() === commandName.toLowerCase() && canUse) cL.commandInstance.run(client, msg, args, options);
             else if (cI.config && cI.config.aliases) {
                 cI.config.aliases.forEach(a => {

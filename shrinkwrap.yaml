@@ -11,6 +11,7 @@ dependencies:
   opusscript: 0.0.7
   yt-search: 1.1.2
   ytdl-core: 1.0.7
+  ytpl: 0.1.19
 packages:
   /@isolution/youtube-audio-stream/1.3.1:
     dependencies:
@@ -1055,6 +1056,14 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-gECPN5g5JnSy8hIq11xHIGe1T/Xzy0mWxQin3zhlJ3nG/YjPcEVEejrdd2XmA4Vv2Zw3+b1ZyDjmt37XfZri6A==
+  /ytpl/0.1.19:
+    dependencies:
+      html-entities: 1.2.1
+    dev: false
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-Sy0ePxvMXBfp/9PJfJg0FQ7+Cdop65M8i6x9kX4pA80AT6huaIGnMVneUfI+NhDwwfm7tdxdke1JPRD7I5tH0w==
   github.com/hammerandchisel/erlpack/5d0064f9e106841e1eead711a6451f99b0d289fd:
     dependencies:
       bindings: 1.5.0
@@ -1082,3 +1091,4 @@ specifiers:
   opusscript: ^0.0.7
   yt-search: ^1.1.2
   ytdl-core: ^1.0.7
+  ytpl: ^0.1.19
