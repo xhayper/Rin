@@ -72,6 +72,7 @@ class Function {
                     : data[0].videoData.duration.timestamp,
                 true
             )
+            .addField(`Link`, `[Here!](${data[0].videoData.url})`, true)
             .setFooter(`Requested by ${data[0].message.author.tag}!`);
         await data[0].channel.send(playEmbed);
 
@@ -182,7 +183,7 @@ End Of Command Manager
 Login
 */
 
-//client.login(process.env.Bot_Token);
+client.login(process.env.Bot_Token);
 
 /*
 Express Stuff
