@@ -67,20 +67,24 @@ A Fun Music Bot Made In discord.js
 |rin$stop     |0          |None                                                    |Stop the song. (Clear the queue)            |rin$stop                                                                                                                                   |
 |rin$queue    |0          |None                                                    |See the current queue                       |rin$queue                                                                                                                                  |
 |rin$volume   |0          |(Number {0-100})                                        |Set the volume, or get current volume       |rin$volume, rin$volume 100                                                                                                                 |
+|rin$loop     |0          |None                                                    |Loop current queue                          |rin$loop                                                                                                                                   |
 
 # Packages
 [bufferutil](https://www.npmjs.com/package/bufferutil)<br>
+[zlib-sync](https://www.npmjs.com/package/zlib-sync)<br>
 [discord.js](https://www.npmjs.com/package/discord.js)<br>
 [dotenv](https://www.npmjs.com/package/dotenv)<br>
 [glob](https://www.npmjs.com/package/glob)<br>
 [libsodium-wrappers](https://www.npmjs.com/package/libsodium-wrappers)<br>
-[opusscript](https://www.npmjs.com/package/opusscript)<br>
+[@discordjs/opus](http://npmjs.com/package/@discordjs/opus)<br>
+[ffmpeg-static](https://www.npmjs.com/package/ffmpeg-static)<br>
 [ytdl-core](https://www.npmjs.com/package/ytdl-core)<br>
 [yt-search](https://www.npmjs.com/package/yt-search)<br>
 [ytpl](https://www.npmjs.com/package/ytpl)<br>
 [@isolution/youtube-audio-stream](https://www.npmjs.com/package/@isolution/youtube-audio-stream)<br>
 [moment](https://momentjs.com/)<br>
-hammerandchisel/erlpack<br>
+[utf-8-validate](https://www.npmjs.com/package/utf-8-validate)<br>
+[@discordapp/erlpack](https://github.com/discordapp/erlpack)<br>
 
 # How to host?
 
