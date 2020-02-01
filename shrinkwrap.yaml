@@ -8,7 +8,7 @@ dependencies:
   glob: 7.1.6
   libsodium-wrappers: 0.7.6
   moment: 2.24.0
-  opusscript: 0.0.7
+  node-opus: 0.3.3
   yt-search: 1.1.2
   ytdl-core: 1.0.7
   ytpl: 0.1.19
@@ -118,6 +118,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
+  /bindings/1.2.1:
+    dev: false
+    resolution:
+      integrity: sha1-FK1hE4EtLTfXLme0ystLtyZQXxE=
   /bindings/1.5.0:
     dependencies:
       file-uri-to-path: 1.0.0
@@ -199,6 +203,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-OlrnT9drYmevZm5p4q+70B3vNNE=
+  /commander/2.20.3:
+    dev: false
+    resolution:
+      integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
   /concat-map/0.0.1:
     dev: false
     resolution:
@@ -777,12 +785,32 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-L/Eg02Epx6Si2NXmedx+Okg+4UHqmaf3TNcxd50SF9NQGcJaON3AtU++kax69XV7YWz4tUspqZSAsVofhFKG2w==
+  /node-opus/0.3.3:
+    dependencies:
+      bindings: 1.2.1
+      commander: 2.20.3
+      nan: 2.14.0
+    dev: false
+    engines:
+      node: '>=5.10.0'
+    optionalDependencies:
+      ogg-packet: 1.0.1
+    requiresBuild: true
+    resolution:
+      integrity: sha512-ZQniA8iJ6y/qOTmW6eyzM9m8odt4CIGV0NM9/U03/pYLhGyxy18QXO25WfrWd8XsUYx57tnxll2xxj54CN08uQ==
   /nth-check/1.0.2:
     dependencies:
       boolbase: 1.0.0
     dev: false
     resolution:
       integrity: sha512-WeBOdju8SnzPN5vTUJYxYUxLeXpCaVP5i5e0LF8fg7WORF2Wd7wFX/pk0tYZk7s8T+J7VLy0Da6J1+wCT0AtHg==
+  /ogg-packet/1.0.1:
+    dependencies:
+      ref-struct: 1.1.0
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha512-dW1ok3BMnMikyXGDIgVEckWnlViW8JLWQV4qj9aN/rNRVqHlDYSlcIEtSIMH7tpuUOiIxAhY3+OxNdIOm6s17A==
   /on-finished/2.3.0:
     dependencies:
       ee-first: 1.1.1
@@ -797,10 +825,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-WDsap3WWHUsROsF9nFC6753Xa9E=
-  /opusscript/0.0.7:
-    dev: false
-    resolution:
-      integrity: sha512-DcBadTdYTUuH9zQtepsLjQn4Ll6rs3dmeFvN+SD0ThPnxRBRm/WC1zXWPg+wgAJimB784gdZvUMA57gDP7FdVg==
   /parseurl/1.3.3:
     dev: false
     engines:
@@ -869,6 +893,24 @@ packages:
     dev: false
     resolution:
       integrity: sha1-nVammAY4yYUaEAsMs799PrkCBcs=
+  /ref-struct/1.1.0:
+    dependencies:
+      debug: 2.6.9
+      ref: 1.3.5
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha1-XV7mWtQc78Olxf60BYcmHkee3BM=
+  /ref/1.3.5:
+    dependencies:
+      bindings: 1.5.0
+      debug: 2.6.9
+      nan: 2.14.0
+    dev: false
+    optional: true
+    requiresBuild: true
+    resolution:
+      integrity: sha512-2cBCniTtxcGUjDpvFfVpw323a83/0RLSGJJY5l5lcomZWhYpU2cuLdsvYqMixvsdLJ9+sTdzEkju8J8ZHDM2nA==
   /safe-buffer/5.1.2:
     dev: false
     resolution:
@@ -1088,7 +1130,7 @@ specifiers:
   glob: ^7.1.6
   libsodium-wrappers: ^0.7.6
   moment: ^2.24.0
-  opusscript: ^0.0.7
+  node-opus: ^0.3.3
   yt-search: ^1.1.2
   ytdl-core: ^1.0.7
   ytpl: ^0.1.19
