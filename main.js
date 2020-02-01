@@ -1,10 +1,9 @@
-require("dotenv").config();
-
 let Discord = require("discord.js"),
     client = new Discord.Client({disableEveryone : true}),
     permissionConfig = require("./permissionConfig"),
     config = require("./config.json"),
     youtubeAudioStream = require("@isolution/youtube-audio-stream"),
+    ytdl = require("ytdl-core"),
     fs = require("fs"),
     glob = require("glob"),
 
@@ -21,40 +20,49 @@ Start Of Register Functions
 
 class Function {
 
-    botOwnerList = config.ownerList;
-    permsConfig = permissionConfig;
-    permsLevelCount = 0;
-    perms;
-
     checkPerms(member) {
         if (!member instanceof Discord.GuildMember) return;
-        if (this.botOwnerList.length() === 1 && this.botOwnerList[0] === member.id || this.botOwnerList.length() > 1 && this.botOwnerList.includes(member.id)) {
-            return this.permsConfig[4];
-        } else if (this.permsLevelCount <= 1) {
-            return this.permsConfig[0];
-        } else if (member.has("administrator")) {
-            return this.permsConfig[3];
+        if (config.ownerList.length === 1 && config.ownerList[0] === member.user.id || config.ownerList.length > 1 && config.ownerList.includes(member.user.id)) {
+            return permissionConfig["4"];
+        } else if (Object.keys(permissionConfig).length <= 1) {
+            return permissionConfig["0"];
+        } else if (member.permissions.has("ADMINISTRATOR")) {
+            return permissionConfig["2"];
         } else {
-            for (this.perms in this.permsConfig) {
+            let perms;
+            for (perms in permissionConfig) {
                 let allowedPermissionCount = 0;
                 let deniedPermissionCount = 0;
-                this.perms.permission.forEach(p => {
-                    if (member.has(p)) allowedPermissionCount++;
-                    else deniedPermissionCount--;
-                });
-                if (allowedPermissionCount > deniedPermissionCount) return this.perms;
+                if (perms.permission) {
+                    perms.permission.forEach(p => {
+                        if (member.permissions.has(p.toUpperCase())) allowedPermissionCount++;
+                        else deniedPermissionCount--;
+                    });
+                    if (allowedPermissionCount > deniedPermissionCount) return perms;
+                }
             }
+            return permissionConfig["0"];
         }
     }
 
     async playMusic(guild) {
         if (!queue.get(guild.id) || queue.get(guild.id).size === 0) return;
         let data = queue.get(guild.id);
+        //let dispatcher;
+        /*if (data[0].videoData.duration.seconds !== 0) {
+            dispatcher = data[0].voiceConnection.playStream(
+                await ytdl('http://www.youtube.com/watch?v=A02s8omM_hI',
+                    {
+                        quality: "highestaudio"
+                    })
+            );
+        } else {*/
         let dispatcher = data[0].voiceConnection.playStream(
-            await youtubeAudioStream(data[0].videoData.url, {
-                bitrate: data[0].voiceConnection.channel.bitrate
-            })
-        );
+                await youtubeAudioStream(data[0].videoData.url, {
+                    bitrate: data[0].voiceConnection.channel.bitrate
+                })
+            );
+        //}
 
         dispatcher.setVolume(0.3);
 
@@ -78,18 +86,17 @@ class Function {
 
         data[0].dispatcher = dispatcher;
 
-        dispatcher.on("finish", async () => {
+        dispatcher.on("finish", () => {
             let targetGuild = dispatcher.player.voiceConnection.channel.guild;
             if (
                 !queue.get(targetGuild.id) ||
-                queue.get(targetGuild.id).size === 1 ||
-                queue.get(targetGuild.id).size === 0
+                queue.get(targetGuild.id).length === 1
             ) {
-                await dispatcher.player.voiceConnection.disconnect();
                 queue.delete(targetGuild.id);
+                dispatcher.player.voiceConnection.disconnect();
             } else {
-                 await queue.get(targetGuild.id).shift();
-                 this.playMusic(targetGuild);
+                queue.get(targetGuild.id).shift();
+                this.playMusic(targetGuild);
             }
         });
     }
@@ -120,7 +127,7 @@ let options = {
 Start Of Event Manager
 */
 
-if (!fs.existsSync("./Events")) return fs.mkdirSync("./Events");
+if (!fs.existsSync("./Events")) fs.mkdirSync("./Events");
 else glob("./Events/*.js", (err, res) => {
     if (err) return console.error(err);
     let eventAmount = res.length,
@@ -147,7 +154,7 @@ End Of Event Manager
 Start Of Command Manager
 */
 
-if (!fs.existsSync("./Commands")) return fs.mkdirSync("./Commands");
+if (!fs.existsSync("./Commands")) fs.mkdirSync("./Commands");
 else glob("./Commands/*.js", (err, res) => {
     if (err) return console.error(err);
     let eventAmount = res.length,
@@ -183,16 +190,4 @@ End Of Command Manager
 Login
 */
 
-//client.login(process.env.Bot_Token);
-
-/*
-Express Stuff
-*/
-
-const express = require('express')
-const app = express()
-const port = 3000
-
-app.get('/', (req, res) => res.send('Hello!'))
-
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+client.login(process.env.Bot_Token);
