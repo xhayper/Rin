@@ -117,5 +117,5 @@ exports.run = async (client, msg, args, options) => {
 
 exports.config = {
     category: "music",
-    powerLevel: 4
+    powerLevel: 0
 };

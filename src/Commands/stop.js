@@ -1,6 +1,6 @@
 let Discord = require('discord.js');
 
-exports.run = async (client, msg, args, options) => {
+exports.run = (client, msg, args, options) => {
 
     let error1 = new Discord.RichEmbed()
         .setDescription("I am not currently playing any song.")
@@ -19,13 +19,15 @@ exports.run = async (client, msg, args, options) => {
     if(!msg.member.voiceChannel.connection || options.queue.get(msg.guild.id)[0].voiceConnection && options.queue.get(msg.guild.id)[0].voiceConnection.channel.id !== msg.member.voiceChannel.connection.channel.id) { return msg.channel.send(error2); }
 
     let success1 = new Discord.RichEmbed()
-        .setDescription("Skipped 1 song!")
+        .setDescription("I have stopped the music.")
         .setColor(9472474)
         .setTimestamp(Date.now())
         .setAuthor(`Success!`, msg.author.displayAvatarURL);
 
-    await msg.channel.send(success1);
-    await options.queue.get(msg.guild.id)[0].dispatcher.emit("finish");
+    msg.channel.send(success1);
+    let dispatcher = options.queue.get(msg.guild.id)[0].dispatcher;
+    options.queue.delete(msg.guild.id);
+    dispatcher.emit("finish");
 };
 
 exports.config = {

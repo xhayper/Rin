@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 let Discord = require("discord.js"),
     client = new Discord.Client({disableEveryone : true}),
     permissionConfig = require("./permissionConfig"),
