@@ -17,7 +17,7 @@ exports.run = async (client, msg, args, options) => {
             Users : ${client.users.size}\n
             Channels : ${client.channels.size}\n
             Commands : ${options.commandList.size} commands\n
-            Playing music on : ${options.queue.length ? options.queue.length : 0} guilds`, true)
+            Playing music on : ${options.queue.size ? options.size.length : 0} guilds`, true)
         .addField(`System!`, `
         OS : ${osType[os.type()]}\n
         RAM : ${Math.round((os.totalmem() / 1000000) - (os.freemem() / 1000000))}mb/${Math.round(os.totalmem() / 1000000)}mb`, true);

@@ -16,7 +16,7 @@ exports.run = (client, msg, args, options) => {
 
     if (!options.queue.get(msg.guild.id)) { return msg.channel.send(error1); }
 
-    if(!msg.member.voiceChannel.connection || options.queue.get(msg.guild.id)[0].voiceConnection && options.queue.get(msg.guild.id)[0].voiceConnection.channel.id !== msg.member.voiceChannel.connection.channel.id) { return msg.channel.send(error2); }
+    if(!msg.member.voiceChannel.connection || options.queue.get(msg.guild.id).voiceConnection && options.queue.get(msg.guild.id).voiceConnection.channel.id !== msg.member.voiceChannel.connection.channel.id) { return msg.channel.send(error2); }
 
     let success1 = new Discord.RichEmbed()
         .setDescription("I have stopped the music.")
@@ -25,7 +25,7 @@ exports.run = (client, msg, args, options) => {
         .setAuthor(`Success!`, msg.author.displayAvatarURL);
 
     msg.channel.send(success1);
-    let dispatcher = options.queue.get(msg.guild.id)[0].dispatcher;
+    let dispatcher = options.queue.get(msg.guild.id).dispatcher;
     options.queue.delete(msg.guild.id);
     dispatcher.end();
 };

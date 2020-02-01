@@ -15,9 +15,9 @@ exports.run = async (client, msg, args, options) => {
     let data = [];
     let number = 0;
 
-    options.queue.get(msg.guild.id).forEach(q => {
+    options.queue.get(msg.guild.id).musics.forEach(d => {
         number++;
-       data.push(`${number}. ${q.videoData.title} [${q.videoData.duration.seconds === 0 ? "LIVE" : q.videoData.duration.timestamp}]`);
+       data.push(`${number}. ${d.title} [${d.duration.seconds === 0 ? "LIVE" : d.duration.timestamp}]`);
     });
 
     let embedPage = new (options.maker.embedMaker)(data);

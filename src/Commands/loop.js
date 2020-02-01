@@ -19,13 +19,13 @@ exports.run = (client, msg, args, options) => {
     if(!msg.member.voiceChannel.connection || options.queue.get(msg.guild.id).voiceConnection && options.queue.get(msg.guild.id).voiceConnection.channel.id !== msg.member.voiceChannel.connection.channel.id) { return msg.channel.send(error2); }
 
     let success1 = new Discord.RichEmbed()
-        .setDescription("Skipped 1 song!")
+        .setDescription(`I am ${options.queue.get(msg.guild.id).loop ? "going to stop looping" : "going to loop"} the queue!`)
         .setColor(9472474)
         .setTimestamp(Date.now())
         .setAuthor(`Success!`, msg.author.displayAvatarURL);
 
+    options.queue.get(msg.guild.id).loop = !options.queue.get(msg.guild.id).loop;
     msg.channel.send(success1);
-    options.queue.get(msg.guild.id).dispatcher.end();
 };
 
 exports.config = {
