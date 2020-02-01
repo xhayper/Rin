@@ -182,7 +182,7 @@ End Of Command Manager
 Login
 */
 
-client.login(process.env.Bot_Token);
+//client.login(process.env.Bot_Token);
 
 /*
 Express Stuff
