@@ -58,8 +58,6 @@ exports.run = async (client, msg, args, options) => {
                 .setAuthor(`Adding playlist to the queue! Please wait!`, msg.author.avatarURL);
 
             let waitMsg = await msg.channel.send(waiting1);
-
-            console.log(playlist);
             for (const i of playlist.items) {
                 let newData = {
                     videoData: await search({videoId: ytdl.getURLVideoID(i.url_simple)}),
