@@ -137,8 +137,8 @@ else glob("src/Events/*.js", (err, res) => {
     if (eventAmount === 0) return;
     console.log(`[EventManager] Found ${eventAmount} events!`);
     res.forEach(e => {
-        let event = require("src" + );
-        console.log(event);
+        let event = require(e.replace("src/", "./"));
+
         let eventName = e.replace("src/Events/", "").replace(".js", "");
         if (!event.run) return console.log(`[EventManager] Event "${eventName}" doesn't have main function, Unloading it.`);
         client.on(eventName, (...args) => {
@@ -157,16 +157,16 @@ End Of Event Manager
 Start Of Command Manager
 */
 
-if (!fs.existsSync("./Commands")) fs.mkdirSync("./Commands");
-else glob("./Commands/*.js", (err, res) => {
+if (!fs.existsSync("src/Commands")) fs.mkdirSync("src/Commands");
+else glob("src/Commands/*.js", (err, res) => {
     if (err) return console.error(err);
-    let eventAmount = res.length,
+    let commandAmount = res.length,
         x = 0;
-    if (eventAmount === 0) return;
-    console.log(`[CommandManager] Found ${eventAmount} commands!`);
+    if (commandAmount === 0) return;
+    console.log(`[CommandManager] Found ${commandAmount} commands!`);
     res.forEach(c => {
-        let command = require(c);
-        let commandName = c.replace("./Commands/", "").replace(".js", "");
+        let command = require(c.replace("src/", "./"));
+        let commandName = c.replace("src/Commands/", "").replace(".js", "");
         if (!command.run) return console.log(`[CommandManager] Command "${commandName}" doesn't have main function, Unloading it.`);
         x++;
         let commandData = {
@@ -179,7 +179,7 @@ else glob("./Commands/*.js", (err, res) => {
             commandData.config = command.config;
         }
         commandList.set(commandName.toLowerCase(), commandData);
-        console.log(`[CommandManager] Command "${commandName}" has been loaded. (${x}/${eventAmount})`);
+        console.log(`[CommandManager] Command "${commandName}" has been loaded. (${x}/${commandAmount})`);
     })
 });
 
