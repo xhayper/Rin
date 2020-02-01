@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config({ path: process.env.HOME });
 
 let Discord = require("discord.js"),
     client = new Discord.Client({disableEveryone : true}),
@@ -129,16 +129,17 @@ let options = {
 Start Of Event Manager
 */
 
-if (!fs.existsSync("./Events")) fs.mkdirSync("./Events");
-else glob("./Events/*.js", (err, res) => {
+if (!fs.existsSync("src/Events")) fs.mkdirSync("src/Events");
+else glob("src/Events/*.js", (err, res) => {
     if (err) return console.error(err);
     let eventAmount = res.length,
         x = 0;
     if (eventAmount === 0) return;
     console.log(`[EventManager] Found ${eventAmount} events!`);
     res.forEach(e => {
-        let event = require(e);
-        let eventName = e.replace("./Events/", "").replace(".js", "");
+        let event = require("src" + );
+        console.log(event);
+        let eventName = e.replace("src/Events/", "").replace(".js", "");
         if (!event.run) return console.log(`[EventManager] Event "${eventName}" doesn't have main function, Unloading it.`);
         client.on(eventName, (...args) => {
             event.run(client, options, args)
@@ -187,6 +188,16 @@ End Of Command Manager
 */
 
 
+/*
+Express
+*/
+
+const express = require('express');
+const app = express();
+
+app.get('/', (req, res) => res.send('Hello World!'));
+
+app.listen(process.env.PORT, () => console.log(`App listening on port ${process.env.PORT}!`));
 
 /*
 Login
