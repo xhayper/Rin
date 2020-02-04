@@ -2,9 +2,10 @@
   "name": "Rin",
   "version": "2.0.0",
   "description": "A fun music bot made by xhayper.",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ."
   },
   "repository": {
     "type": "git",
@@ -35,7 +36,8 @@
     "yt-search": "^1.1.2",
     "ytdl-core": "^1.0.7",
     "ytpl": "^0.1.19",
-    "zlib-sync": "^0.1.6"
+    "zlib-sync": "^0.1.6",
+    "express": "^4.17.1"
   },
   "engines": {
     "node": ">=12.0.0"
