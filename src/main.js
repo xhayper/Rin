@@ -1,4 +1,4 @@
-require("dotenv").config({ path: process.env.HOME });
+require("dotenv").config();
 
 let Discord = require("discord.js"),
     client = new Discord.Client({disableEveryone : true}),
@@ -137,16 +137,16 @@ let options = {
 Start Of Event Manager
 */
 
-if (!fs.existsSync("src/Events")) fs.mkdirSync("src/Events");
-else glob("src/Events/*.js", (err, res) => {
+if (!fs.existsSync("./Events")) fs.mkdirSync("./Events");
+else glob("./Events/*.js", (err, res) => {
     if (err) return console.error(err);
     let eventAmount = res.length,
         x = 0;
     if (eventAmount === 0) return;
     console.log(`[EventManager] Found ${eventAmount} events!`);
     res.forEach(e => {
-        let event = require(e.replace("src", "./"));
-        let eventName = e.replace("src/Events/", "").replace(".js", "");
+        let event = require(e);
+        let eventName = e.replace("./Events/", "").replace(".js", "");
         if (!event.run) return console.log(`[EventManager] Event "${eventName}" doesn't have main function, Unloading it.`);
         client.on(eventName, (...args) => {
             event.run(client, options, args)
@@ -164,16 +164,16 @@ End Of Event Manager
 Start Of Command Manager
 */
 
-if (!fs.existsSync("src/Commands")) fs.mkdirSync("src/Commands");
-else glob("src/Commands/*.js", (err, res) => {
+if (!fs.existsSync("./Commands")) fs.mkdirSync("./Commands");
+else glob("./Commands/*.js", (err, res) => {
     if (err) return console.error(err);
     let commandAmount = res.length,
         x = 0;
     if (commandAmount === 0) return;
     console.log(`[CommandManager] Found ${commandAmount} commands!`);
     res.forEach(c => {
-        let command = require(c.replace("src", "./"));
-        let commandName = c.replace("src/Commands/", "").replace(".js", "");
+        let command = require(c);
+        let commandName = c.replace("./Commands/", "").replace(".js", "");
         if (!command.run) return console.log(`[CommandManager] Command "${commandName}" doesn't have main function, Unloading it.`);
         x++;
         let commandData = {
@@ -194,16 +194,7 @@ else glob("src/Commands/*.js", (err, res) => {
 End Of Command Manager
 */
 
-/*
-Config Express
-*/
 
-const express = require('express');
-const app = express();
-
-app.get('/', (req, res) => res.send('Hello World!'));
-
-app.listen(process.env.PORT, () => console.log(`App listening on port ${process.env.PORT}!`));
 
 /*
 Login
