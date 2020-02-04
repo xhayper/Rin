@@ -93,7 +93,7 @@ class Function {
 
         dispatcher.on("end", (reason) => {
             let targetGuild = dispatcher.player.voiceConnection.channel.guild;
-            if (queue.get(targetGuild.id).loop) {
+            if (queue.get(targetGuild.id) && queue.get(targetGuild.id).loop) {
                 queue.get(targetGuild.id).musics[queue.get(targetGuild.id).musics.length] = queue.get(targetGuild.id).musics[0];
                 queue.get(targetGuild.id).musics.shift();
                 this.playMusic(targetGuild);
