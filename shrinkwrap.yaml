@@ -942,6 +942,11 @@ packages:
     resolution:
       integrity: sha512-L/Eg02Epx6Si2NXmedx+Okg+4UHqmaf3TNcxd50SF9NQGcJaON3AtU++kax69XV7YWz4tUspqZSAsVofhFKG2w==
   /node-opus/0.3.3:
+    cpu:
+      - x64
+      - arm
+      - arm64
+      - ia32
     dependencies:
       bindings: 1.2.1
       commander: 2.20.3
@@ -951,6 +956,12 @@ packages:
       node: '>=5.10.0'
     optionalDependencies:
       ogg-packet: 1.0.1
+    os:
+      - linux
+      - darwin
+      - win32
+      - freebsd
+      - android
     requiresBuild: true
     resolution:
       integrity: sha512-ZQniA8iJ6y/qOTmW6eyzM9m8odt4CIGV0NM9/U03/pYLhGyxy18QXO25WfrWd8XsUYx57tnxll2xxj54CN08uQ==
@@ -1471,7 +1482,7 @@ specifiers:
   glob: ^7.1.6
   libsodium-wrappers: ^0.7.6
   moment: ^2.24.0
-  node-opus: ^0.3.2
+  node-opus: ^0.3.3
   utf-8-validate: ^5.0.2
   yt-search: ^1.1.2
   ytdl-core: ^1.0.7
