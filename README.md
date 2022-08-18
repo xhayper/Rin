@@ -1,3 +1,5 @@
+# THIS CODE IS FROM 2020, WHEN I AM A BIT BETTER AT CODING BUT STILL BAD, DO NOT USE
+
 # Rin
 A Fun Music Bot Made In discord.js
 
